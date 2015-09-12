@@ -1,0 +1,1 @@
+include (../MetalTrainer.pro)
