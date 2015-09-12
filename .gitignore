@@ -1,8 +1,4 @@
-
-MetalTrainer/x86/Makefile
-MetalTrainer/x86/Makefile.Debug
-MetalTrainer/x86/Makefile.Release
+*.o
 MetalTrainer/assets/.assets.index
-MetalTrainer/x86/o-g/MetalTrainer
-MetalTrainer/x86/o-g/.moc/*
-MetalTrainer/x86/o-g/.obj/*
+MetalTrainer/assets/sounds/*.mp3
+MetalTrainer/config.pri

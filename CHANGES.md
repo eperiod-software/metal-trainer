@@ -1,6 +1,14 @@
 Metal Trainer Change Log
 ========================
 
+1.1.0
+-----
+
+*Rev 1*
+
+* App now free and open-source
+* Updated for BlackBerry 10.3
+
 1.0.4
 -----
 

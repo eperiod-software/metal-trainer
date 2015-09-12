@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <qnx xmlns="http://www.qnx.com/schemas/application/1.0">
     <!-- App info -->
-    <name>MetalTrainer</name>
+    <name>Metal Trainer</name>
     <description>An interval training timer.</description>
     <copyright>Copyright (c) 2013 - 2015 ePeriod Software</copyright>
     <author>ePeriod Software</author>
