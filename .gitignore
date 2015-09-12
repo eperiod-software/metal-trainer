@@ -1,4 +1,11 @@
 *.o
+MetalTrainer/.settings
+MetalTrainer/arm/*
+MetalTrainer/arm/o.le-v7/*
+MetalTrainer/arm/o.le-v7-g/*
+MetalTrainer/arm-p/o.le-v7-g/*
+MetalTrainer/x86/*
+MetalTrainer/x86/o.g/*
 MetalTrainer/assets/.assets.index
 MetalTrainer/assets/sounds/*.mp3
 MetalTrainer/config.pri
