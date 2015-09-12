@@ -1,42 +1,27 @@
-/*
- * Copyright (c) 2011-2015 BlackBerry Limited.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 #include "applicationui.hpp"
 
 #include <bb/cascades/Application>
 #include <bb/cascades/QmlDocument>
 #include <bb/cascades/AbstractPane>
 #include <bb/cascades/LocaleHandler>
+#include <bb/system/InvokeManager>
+#include <bb/system/InvokeRequest>
+#include <iostream>
 
 using namespace bb::cascades;
+using namespace bb::system;
 
-ApplicationUI::ApplicationUI() :
-        QObject()
+ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
+        QObject(app)
 {
     // prepare the localization
     m_pTranslator = new QTranslator(this);
     m_pLocaleHandler = new LocaleHandler(this);
-
-    bool res = QObject::connect(m_pLocaleHandler, SIGNAL(systemLanguageChanged()), this, SLOT(onSystemLanguageChanged()));
-    // This is only available in Debug builds
-    Q_ASSERT(res);
-    // Since the variable is not used in the app, this is added to avoid a
-    // compiler warning
-    Q_UNUSED(res);
-
+    if(!QObject::connect(m_pLocaleHandler, SIGNAL(systemLanguageChanged()), this, SLOT(onSystemLanguageChanged()))) {
+        // This is an abnormal situation! Something went wrong!
+        // Add own code to recover here
+        qWarning() << "Recovering from a failed connect()";
+    }
     // initial load
     onSystemLanguageChanged();
 
@@ -44,11 +29,42 @@ ApplicationUI::ApplicationUI() :
     // to ensure the document gets destroyed properly at shut down.
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
 
+    // Create the interval manager that will go between QML and the IntervalManager class
+    intervalManager = new QMLIntervalManager();
+    qml->setContextProperty("intervalManager", intervalManager);
+
+    intervalPoller = new QMLIntervalPoller();
+	qml->setContextProperty("intervalPoller", intervalPoller);
+
+    settingsManager = new QMLSettingsManager();
+	qml->setContextProperty("settingsManager", settingsManager);
+
+	qml->setContextProperty("app", this);
+
+    qmlRegisterType<QTimer>("bb.cascades", 1, 0, "QTimer");
+
+    QObject::connect(QCoreApplication::instance(), SIGNAL(aboutToQuit()), intervalManager, SIGNAL(quitting()));
+
     // Create root object for the UI
     AbstractPane *root = qml->createRootObject<AbstractPane>();
 
     // Set created root object as the application scene
-    Application::instance()->setScene(root);
+    app->setScene(root);
+}
+
+ApplicationUI::~ApplicationUI() {
+	delete intervalManager;
+	delete intervalPoller;
+	delete settingsManager;
+}
+
+void ApplicationUI::launchBBWorld() {
+	InvokeManager invokeManager;
+	InvokeRequest request;
+	request.setTarget("sys.appworld");
+	request.setAction("bb.action.OPEN");
+	request.setUri(QUrl("appworld://content/32950887"));
+	invokeManager.invoke(request);
 }
 
 void ApplicationUI::onSystemLanguageChanged()

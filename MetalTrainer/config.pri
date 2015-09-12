@@ -35,15 +35,87 @@ simulator {
 }
 
 config_pri_assets {
-    OTHER_FILES += $$quote($$BASEDIR/assets/main.qml)
+    OTHER_FILES += \
+        $$quote($$BASEDIR/assets/IntervalControl.qml) \
+        $$quote($$BASEDIR/assets/NotificationControl.qml) \
+        $$quote($$BASEDIR/assets/about.qml) \
+        $$quote($$BASEDIR/assets/help.qml) \
+        $$quote($$BASEDIR/assets/images/app.png) \
+        $$quote($$BASEDIR/assets/images/booleanSlider/handle_inactive.png) \
+        $$quote($$BASEDIR/assets/images/booleanSlider/handle_pressed.png) \
+        $$quote($$BASEDIR/assets/images/booleanSlider/slider_track.png) \
+        $$quote($$BASEDIR/assets/images/booleanSlider/target.png) \
+        $$quote($$BASEDIR/assets/images/contrast/pause.png) \
+        $$quote($$BASEDIR/assets/images/contrast/play.png) \
+        $$quote($$BASEDIR/assets/images/contrast/share.png) \
+        $$quote($$BASEDIR/assets/images/contrast/stop.png) \
+        $$quote($$BASEDIR/assets/images/gray/add_rest.png) \
+        $$quote($$BASEDIR/assets/images/gray/add_workout.png) \
+        $$quote($$BASEDIR/assets/images/gray/duplicate.png) \
+        $$quote($$BASEDIR/assets/images/gray/export.png) \
+        $$quote($$BASEDIR/assets/images/gray/import.png) \
+        $$quote($$BASEDIR/assets/images/gray/move_down.png) \
+        $$quote($$BASEDIR/assets/images/gray/move_up.png) \
+        $$quote($$BASEDIR/assets/images/gray/pause.png) \
+        $$quote($$BASEDIR/assets/images/gray/play.png) \
+        $$quote($$BASEDIR/assets/images/gray/stop.png) \
+        $$quote($$BASEDIR/assets/images/gray/theme.png) \
+        $$quote($$BASEDIR/assets/images/ic_cancel.png) \
+        $$quote($$BASEDIR/assets/images/ic_edit.png) \
+        $$quote($$BASEDIR/assets/images/ic_help.png) \
+        $$quote($$BASEDIR/assets/images/ic_info.png) \
+        $$quote($$BASEDIR/assets/images/ic_settings.png) \
+        $$quote($$BASEDIR/assets/images/toast_error.png) \
+        $$quote($$BASEDIR/assets/interval.qml) \
+        $$quote($$BASEDIR/assets/main.qml) \
+        $$quote($$BASEDIR/assets/multiIntervals.qml) \
+        $$quote($$BASEDIR/assets/settings.qml) \
+        $$quote($$BASEDIR/assets/sounds/alarm1.mp3) \
+        $$quote($$BASEDIR/assets/sounds/alarm2.mp3) \
+        $$quote($$BASEDIR/assets/sounds/alarm3.mp3) \
+        $$quote($$BASEDIR/assets/sounds/bell1.mp3) \
+        $$quote($$BASEDIR/assets/sounds/bell2.mp3) \
+        $$quote($$BASEDIR/assets/sounds/bell3.mp3) \
+        $$quote($$BASEDIR/assets/sounds/boxing1.mp3) \
+        $$quote($$BASEDIR/assets/sounds/boxing2.mp3) \
+        $$quote($$BASEDIR/assets/sounds/boxing3.mp3) \
+        $$quote($$BASEDIR/assets/sounds/scifi1.mp3) \
+        $$quote($$BASEDIR/assets/sounds/scifi2.mp3) \
+        $$quote($$BASEDIR/assets/theme.qml) \
+        $$quote($$BASEDIR/assets/workingOut.qml) \
+        $$quote($$BASEDIR/assets/workout.qml) \
+        $$quote($$BASEDIR/assets/workoutStarter.qml)
 }
 
 config_pri_source_group1 {
     SOURCES += \
+        $$quote($$BASEDIR/src/QMLActiveFrame.cpp) \
+        $$quote($$BASEDIR/src/QMLIntervalManager.cpp) \
+        $$quote($$BASEDIR/src/QMLIntervalPoller.cpp) \
+        $$quote($$BASEDIR/src/QMLSettingsManager.cpp) \
+        $$quote($$BASEDIR/src/WorkoutThread.cpp) \
         $$quote($$BASEDIR/src/applicationui.cpp) \
+        $$quote($$BASEDIR/src/interval/Interval.cpp) \
+        $$quote($$BASEDIR/src/interval/IntervalManager.cpp) \
+        $$quote($$BASEDIR/src/interval/PlatformSpecific.cpp) \
+        $$quote($$BASEDIR/src/interval/Serializer.cpp) \
+        $$quote($$BASEDIR/src/interval/Workout.cpp) \
         $$quote($$BASEDIR/src/main.cpp)
 
-    HEADERS += $$quote($$BASEDIR/src/applicationui.hpp)
+    HEADERS += \
+        $$quote($$BASEDIR/src/QMLActiveFrame.h) \
+        $$quote($$BASEDIR/src/QMLIntervalManager.h) \
+        $$quote($$BASEDIR/src/QMLIntervalPoller.h) \
+        $$quote($$BASEDIR/src/QMLSettingsManager.h) \
+        $$quote($$BASEDIR/src/Trial.h) \
+        $$quote($$BASEDIR/src/WorkoutThread.h) \
+        $$quote($$BASEDIR/src/applicationui.hpp) \
+        $$quote($$BASEDIR/src/interval/Interval.h) \
+        $$quote($$BASEDIR/src/interval/IntervalManager.h) \
+        $$quote($$BASEDIR/src/interval/PlatformSpecific.h) \
+        $$quote($$BASEDIR/src/interval/Serializer.h) \
+        $$quote($$BASEDIR/src/interval/Util.h) \
+        $$quote($$BASEDIR/src/interval/Workout.h)
 }
 
 CONFIG += precompile_header
@@ -57,9 +129,29 @@ lupdate_inclusion {
         $$quote($$BASEDIR/../src/*.cc) \
         $$quote($$BASEDIR/../src/*.cpp) \
         $$quote($$BASEDIR/../src/*.cxx) \
+        $$quote($$BASEDIR/../src/interval/*.c) \
+        $$quote($$BASEDIR/../src/interval/*.c++) \
+        $$quote($$BASEDIR/../src/interval/*.cc) \
+        $$quote($$BASEDIR/../src/interval/*.cpp) \
+        $$quote($$BASEDIR/../src/interval/*.cxx) \
         $$quote($$BASEDIR/../assets/*.qml) \
         $$quote($$BASEDIR/../assets/*.js) \
-        $$quote($$BASEDIR/../assets/*.qs)
+        $$quote($$BASEDIR/../assets/*.qs) \
+        $$quote($$BASEDIR/../assets/images/*.qml) \
+        $$quote($$BASEDIR/../assets/images/*.js) \
+        $$quote($$BASEDIR/../assets/images/*.qs) \
+        $$quote($$BASEDIR/../assets/images/booleanSlider/*.qml) \
+        $$quote($$BASEDIR/../assets/images/booleanSlider/*.js) \
+        $$quote($$BASEDIR/../assets/images/booleanSlider/*.qs) \
+        $$quote($$BASEDIR/../assets/images/contrast/*.qml) \
+        $$quote($$BASEDIR/../assets/images/contrast/*.js) \
+        $$quote($$BASEDIR/../assets/images/contrast/*.qs) \
+        $$quote($$BASEDIR/../assets/images/gray/*.qml) \
+        $$quote($$BASEDIR/../assets/images/gray/*.js) \
+        $$quote($$BASEDIR/../assets/images/gray/*.qs) \
+        $$quote($$BASEDIR/../assets/sounds/*.qml) \
+        $$quote($$BASEDIR/../assets/sounds/*.js) \
+        $$quote($$BASEDIR/../assets/sounds/*.qs)
 
     HEADERS += \
         $$quote($$BASEDIR/../src/*.h) \
