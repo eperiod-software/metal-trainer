@@ -10,7 +10,7 @@ Set up your own custom interval training or HIIT workout with the highly-rated
 Metal Trainer app for BlackBerry 10. Metal Trainer gives you complete control
 over the intervals and number of rounds in your workout!
 
-Download from https://appworld.blackberry.com/webstore/content/32950887/?lang=en&countrycode=CA.
+Download from [BlackBerry World](https://appworld.blackberry.com/webstore/content/32950887/?lang=en&countrycode=CA).
 
 Features include:
 
@@ -24,9 +24,7 @@ Features include:
 Directory Structure
 -------------------
 
-```
-MetalTrainer   The BlackBerry 10 app
-Graphics       Icons, screenshots (for BlackBerry World), etc.
-CHANGES.md     List of changes
-README.md      This file
-```
+* `MetalTrainer/` - The BlackBerry 10 [Momentics](http://developer.blackberry.com/native/downloads/) project
+* `Graphics/` - Icons, screenshots (for BlackBerry World), etc.
+* `CHANGES.md` - List of changes
+* `README.md` - This file
