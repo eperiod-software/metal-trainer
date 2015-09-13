@@ -8,6 +8,7 @@ Metal Trainer Change Log
 
 * App now free and open-source
 * Updated for BlackBerry 10.3
+* Added light or dark theme option
 
 1.0.4
 -----

@@ -35,7 +35,7 @@ public:
 
 	bool getKeepScreenOn();
 	void setKeepScreenOn(bool screenOn);
-	
+
 	bool getUseLightTheme();
 	void setUseLightTheme(bool screenOn);
 
@@ -69,7 +69,6 @@ public:
 	QString getSoundExt();
 
 	Q_INVOKABLE void setDeviceScreenOn(bool screenOn);
-	Q_INVOKABLE void setWindowLightTheme(bool lightTheme);
 
 signals:
 	void keepScreenOnChanged(bool screenOn);

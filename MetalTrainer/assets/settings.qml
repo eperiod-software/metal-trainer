@@ -10,7 +10,7 @@ Page {
     
     function load() {
         screenAwake.checked = settingsManager.keepScreenOn
-        lightTheme.checked = settingsManager.lightTheme
+        lightTheme.checked = settingsManager.useLightTheme
         startSettings.setSound(settingsManager.startSound)
         finishSettings.setSound(settingsManager.finishSound)
         nextIntervalSettings.setSound(settingsManager.intervalSound)
@@ -24,7 +24,7 @@ Page {
     
     function save() {
         settingsManager.keepScreenOn = screenAwake.checked
-        settingsManager.lightTheme = lightTheme.checked
+        settingsManager.useLightTheme = lightTheme.checked
         settingsManager.startSound = startSettings.soundName
         settingsManager.finishSound = finishSettings.soundName
         settingsManager.intervalSound = nextIntervalSettings.soundName

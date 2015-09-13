@@ -33,6 +33,7 @@ QMLSettingsManager::~QMLSettingsManager() {
 bool QMLSettingsManager::loadSettings(QString filename) {
 	// Defaults
 	keepScreenOn = true;
+	useLightTheme = false;
 	startSound = "";
 	finishSound = "alarm1";
 	intervalSound = "bell1";
@@ -133,6 +134,9 @@ bool QMLSettingsManager::loadSettings(QString filename) {
 			ifs.close();
 			return false;
 		}
+
+		// Make sure we set the proper theme
+		setUseLightTheme(useLightTheme);
 	}
 
 	// Read the workout delay
@@ -259,10 +263,12 @@ bool QMLSettingsManager::getUseLightTheme() {
 void QMLSettingsManager::setUseLightTheme(bool lightTheme) {
 	bool changed = (useLightTheme != lightTheme);
 	useLightTheme = lightTheme;
-	if (changed) {
+
+	VisualStyle::Type style = (lightTheme ? VisualStyle::Bright : VisualStyle::Dark);
+	Application::instance()->themeSupport()->setVisualStyle(style);
+
+	if (changed)
 		emit useLightThemeChanged(lightTheme);
-		setWindowLightTheme(lightTheme);
-	}
 }
 
 QString QMLSettingsManager::getStartSound() {
@@ -370,7 +376,3 @@ void QMLSettingsManager::setDeviceScreenOn(bool screenOn) {
 	Application::instance()->mainWindow()->setScreenIdleMode(mode);
 }
 
-void QMLSettingsManager::setWindowLightTheme(bool lightTheme) {
-	VisualStyle::Type style = (lightTheme ? VisualStyle::Bright : VisualStyle::Dark);
-	Application::instance()->themeSupport()->setVisualStyle(style);
-}

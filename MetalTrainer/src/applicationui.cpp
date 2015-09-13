@@ -6,6 +6,7 @@
 #include <bb/cascades/LocaleHandler>
 #include <bb/cascades/QmlDocument>
 #include <bb/cascades/ThemeSupport>
+#include <bb/cascades/VisualStyle>
 #include <bb/system/InvokeManager>
 #include <bb/system/InvokeRequest>
 #include <iostream>
@@ -27,12 +28,12 @@ ApplicationUI::ApplicationUI(bb::cascades::Application *app) :
     // initial load
     onSystemLanguageChanged();
 
+    // Set the colouring
+    Application::instance()->themeSupport()->setPrimaryColor(QVariant::fromValue<Color>(Color::Red), QVariant::fromValue<Color>(Color::DarkRed));
+
     // Create scene document from main.qml asset, the parent is set
     // to ensure the document gets destroyed properly at shut down.
     QmlDocument *qml = QmlDocument::create("asset:///main.qml").parent(this);
-
-    // Set the colouring
-    Application::instance()->themeSupport()->setPrimaryColor(QVariant::fromValue<Color>(Color::Red), QVariant::fromValue<Color>(Color::DarkRed));
 
     // Create the interval manager that will go between QML and the IntervalManager class
     intervalManager = new QMLIntervalManager();
