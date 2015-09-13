@@ -6,6 +6,7 @@ Page {
     
     property int numRounds
     property bool pausedWorkout
+    property bool canceledWorkout
     
     property string soundStart
     property string soundFinish
@@ -27,6 +28,7 @@ Page {
     
     function startPolling(rounds) {
         pausedWorkout = false
+        canceledWorkout = false
         
         var soundExt = settingsManager.soundExt
         
@@ -83,8 +85,11 @@ Page {
             playSound(soundFinish)
             
             quitWorkout()
-            workoutStarterPage.finishedWorkout = true
-            workoutStarterPage.showShare = true
+            
+            if (!canceledWorkout) {
+                workoutStarterPage.finishedWorkout = true
+                workoutStarterPage.showShare = true
+            }
         }
         
         roundNum.text = intervalPoller.getRound() + "/" + numRounds
@@ -147,8 +152,8 @@ Page {
             id: stopButton
             title: "Stop"
             onTriggered: {
+                canceledWorkout = true
                 intervalManager.killWorkout()
-                quitWorkout()
             }
             ActionBar.placement: ActionBarPlacement.OnBar
             imageSource: "asset:///images/gray/stop.png"
