@@ -19,7 +19,10 @@
 
     <!-- Icons and assets -->
     <icon>
-        <image>icon.png</image>
+        <image>icon_110.png</image>
+        <image>icon_144.png</image>
+        <image>icon_90.png</image>
+        <image>icon_96.png</image>
     </icon>
 
     <asset path="icon.png">icon.png</asset>
@@ -27,6 +30,10 @@
     <asset path="translations" dest="qm">
         <include name="*.qm"/>
     </asset>
+    <asset path="icon_110.png">icon_110.png</asset>
+    <asset path="icon_144.png">icon_144.png</asset>
+    <asset path="icon_90.png">icon_90.png</asset>
+    <asset path="icon_96.png">icon_96.png</asset>
 
     <!-- Permissions necessary -->
     <permission system="true">run_native</permission>
