@@ -10,6 +10,7 @@ Page {
     
     function load() {
         screenAwake.checked = settingsManager.keepScreenOn
+        lightTheme.checked = settingsManager.lightTheme
         startSettings.setSound(settingsManager.startSound)
         finishSettings.setSound(settingsManager.finishSound)
         nextIntervalSettings.setSound(settingsManager.intervalSound)
@@ -23,6 +24,7 @@ Page {
     
     function save() {
         settingsManager.keepScreenOn = screenAwake.checked
+        settingsManager.lightTheme = lightTheme.checked
         settingsManager.startSound = startSettings.soundName
         settingsManager.finishSound = finishSettings.soundName
         settingsManager.intervalSound = nextIntervalSettings.soundName
@@ -114,6 +116,12 @@ Page {
             CheckBox {
                 id: screenAwake
                 text: "Keep screen on"
+                horizontalAlignment: HorizontalAlignment.Fill
+                topMargin: 20.0
+            }
+            CheckBox {
+                id: lightTheme
+                text: "Use light theme"
                 horizontalAlignment: HorizontalAlignment.Fill
                 topMargin: 20.0
             }

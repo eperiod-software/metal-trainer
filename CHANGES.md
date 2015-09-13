@@ -14,7 +14,7 @@ Metal Trainer Change Log
 
 *Rev 1*
 
-* TODO
+* Minor feature additions
 
 1.0.3
 -----

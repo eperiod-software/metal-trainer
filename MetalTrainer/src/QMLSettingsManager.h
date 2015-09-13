@@ -14,6 +14,7 @@
 class QMLSettingsManager : public QObject {
 	Q_OBJECT
 	Q_PROPERTY(bool keepScreenOn READ getKeepScreenOn WRITE setKeepScreenOn NOTIFY keepScreenOnChanged)
+	Q_PROPERTY(bool useLightTheme READ getUseLightTheme WRITE setUseLightTheme NOTIFY useLightThemeChanged)
 	Q_PROPERTY(QString startSound READ getStartSound WRITE setStartSound NOTIFY startSoundChanged)
 	Q_PROPERTY(QString finishSound READ getFinishSound WRITE setFinishSound NOTIFY finishSoundChanged)
 	Q_PROPERTY(QString intervalSound READ getIntervalSound WRITE setIntervalSound NOTIFY intervalSoundChanged)
@@ -34,6 +35,9 @@ public:
 
 	bool getKeepScreenOn();
 	void setKeepScreenOn(bool screenOn);
+	
+	bool getUseLightTheme();
+	void setUseLightTheme(bool screenOn);
 
 	QString getStartSound();
 	void setStartSound(QString sound);
@@ -65,9 +69,11 @@ public:
 	QString getSoundExt();
 
 	Q_INVOKABLE void setDeviceScreenOn(bool screenOn);
+	Q_INVOKABLE void setWindowLightTheme(bool lightTheme);
 
 signals:
 	void keepScreenOnChanged(bool screenOn);
+	void useLightThemeChanged(bool lightTheme);
 	void startSoundChanged(QString sound);
 	void finishSoundChanged(QString sound);
 	void intervalSoundChanged(QString sound);
@@ -79,6 +85,7 @@ signals:
 
 private:
 	bool keepScreenOn;
+	bool useLightTheme;
 	std::string startSound;
 	std::string finishSound;
 	std::string intervalSound;

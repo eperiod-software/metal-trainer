@@ -10,6 +10,9 @@
 #include <bb/cascades/Application>
 #include <bb/cascades/Window>
 #include <bb/cascades/ScreenIdleMode>
+#include <bb/cascades/Theme>
+#include <bb/cascades/ThemeSupport>
+#include <bb/cascades/VisualStyle>
 
 #include "QMLSettingsManager.h"
 #include "interval/Serializer.h"
@@ -21,7 +24,7 @@ static const char *SETTINGS_HEADER = "MTSM";
 #define SOUND_EXT ".mp3"
 
 QMLSettingsManager::QMLSettingsManager()
-	: keepScreenOn(true), warningTime(0), defaultIntervalTime(0), defaultIntervalReps(0), workoutDelay(0) {
+	: keepScreenOn(true), useLightTheme(false), warningTime(0), defaultIntervalTime(0), defaultIntervalReps(0), workoutDelay(0) {
 }
 
 QMLSettingsManager::~QMLSettingsManager() {
@@ -124,6 +127,14 @@ bool QMLSettingsManager::loadSettings(QString filename) {
 		}
 	}
 
+	// Read a value indicating whether the light theme should be used
+	if (version >= 7) {
+		if (!Serializer::readBool(ifs, useLightTheme)) {
+			ifs.close();
+			return false;
+		}
+	}
+
 	// Read the workout delay
 	if (!Serializer::readInt(ifs, workoutDelay)) {
 		ifs.close();
@@ -211,6 +222,14 @@ bool QMLSettingsManager::saveSettings(QString filename) {
 		}
 	}
 
+	// Write a value indicating whether the light theme should be used
+	if (version >= 7) {
+		if (!Serializer::writeBool(ofs, useLightTheme)) {
+			ofs.close();
+			return false;
+		}
+	}
+
 	// Write the workout delay
 	if (!Serializer::writeInt(ofs, workoutDelay)) {
 		ofs.close();
@@ -231,6 +250,19 @@ void QMLSettingsManager::setKeepScreenOn(bool screenOn) {
 	keepScreenOn = screenOn;
 	if (changed)
 		emit keepScreenOnChanged(screenOn);
+}
+
+bool QMLSettingsManager::getUseLightTheme() {
+	return useLightTheme;
+}
+
+void QMLSettingsManager::setUseLightTheme(bool lightTheme) {
+	bool changed = (useLightTheme != lightTheme);
+	useLightTheme = lightTheme;
+	if (changed) {
+		emit useLightThemeChanged(lightTheme);
+		setWindowLightTheme(lightTheme);
+	}
 }
 
 QString QMLSettingsManager::getStartSound() {
@@ -336,4 +368,9 @@ QString QMLSettingsManager::getSoundExt() {
 void QMLSettingsManager::setDeviceScreenOn(bool screenOn) {
 	ScreenIdleMode::Type mode = (screenOn ? ScreenIdleMode::KeepAwake : ScreenIdleMode::Normal);
 	Application::instance()->mainWindow()->setScreenIdleMode(mode);
+}
+
+void QMLSettingsManager::setWindowLightTheme(bool lightTheme) {
+	VisualStyle::Type style = (lightTheme ? VisualStyle::Bright : VisualStyle::Dark);
+	Application::instance()->themeSupport()->setVisualStyle(style);
 }
