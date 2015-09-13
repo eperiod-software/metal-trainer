@@ -4,7 +4,7 @@
     <name>Metal Trainer</name>
     <description>An interval training timer.</description>
     <author>ePeriod Software</author>
-    <id>com.example.MetalTrainer</id>
+    <id>com.eperiod.MetalTrainer</id>
     
     <!-- Version info -->
     <versionNumber>1.1.0</versionNumber>
