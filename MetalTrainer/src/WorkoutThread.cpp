@@ -18,7 +18,7 @@ WorkoutThread::WorkoutThread(int workout) {
 }
 
 WorkoutThread::~WorkoutThread() {
-	// TODO Auto-generated destructor stub
+
 }
 
 WorkoutThread *WorkoutThread::startThread(int workout) {
