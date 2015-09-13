@@ -27,5 +27,5 @@ Directory Structure
 * `MetalTrainer/` - The BlackBerry 10 [Momentics](http://developer.blackberry.com/native/downloads/) project
 * `Graphics/` - Icons, screenshots (for BlackBerry World), etc.
 * `CHANGES.md` - List of changes
-* `LICENSE` - The BSD license
+* `LICENSE` - The BSD license text
 * `README.md` - This file
