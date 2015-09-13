@@ -3,7 +3,6 @@
     <!-- App info -->
     <name>Metal Trainer</name>
     <description>An interval training timer.</description>
-    <copyright>Copyright (c) 2013 - 2015 ePeriod Software</copyright>
     <author>ePeriod Software</author>
     <id>com.example.MetalTrainer</id>
     
@@ -25,7 +24,6 @@
         <image>icon_96.png</image>
     </icon>
 
-    <asset path="icon.png">icon.png</asset>
     <asset path="assets">assets</asset>
     <asset path="translations" dest="qm">
         <include name="*.qm"/>
